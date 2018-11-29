@@ -4,6 +4,7 @@ import { HelpdeskProvider } from '../../providers/helpdesk/helpdesk';
 import { DetailsPage } from '../details/details';
 import { CreatePage } from '../create/create';
 import { LoginPage } from '../login/login';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-home',
@@ -15,7 +16,9 @@ export class HomePage {
     public navCtrl: NavController, 
     public helpdesk: HelpdeskProvider,
     public modalCtrl: ModalController,
-    public app: App) {
+    public app: App,
+    public storage: Storage
+  ) {
     this.aduanList = [];
   }
 
@@ -35,7 +38,9 @@ export class HomePage {
 
   logout(){
     //this.navCtrl.setRoot(LoginPage);
+    this.storage.remove('USERDATA');
     this.app.getRootNav().setRoot(LoginPage);
+
   }
 
   setTime(time){

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { Storage } from '@ionic/storage';
 /*
   Generated class for the HelpdeskProvider provider.
 
@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class HelpdeskProvider {
   baseURL: string;
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient, public storage: Storage) {
     this.baseURL = 'http://localhost/helpdesk/api';
   }
 
@@ -28,24 +28,31 @@ export class HelpdeskProvider {
   }
 
   createAduan(aduan: any){
-    let data = {
-      user_id: 1,
-      token: 'd5f66a06ec809d70d0c52842df8dc0011d7d1ad0f2d56f50d3123da17a2489fe',
-      title: aduan.title,
-      kategori: aduan.kategori,
-      masalah: aduan.masalah    
-    };
 
-    let url = this.baseURL + '/createAduan';
-    let body = JSON.stringify(data);
+    this.storage.get('USERDATA').then(result => {
+      if(result) {
+        let user = JSON.parse(result);
 
-    return new Promise( (resolve, reject) => {
-      this.http.post(url, body)
-      .subscribe(response => {
-        resolve(response);
-      }, err => {
-        reject(err);
-      })
+        let data = {
+          user_id: user.user_id,
+          token: user.token,
+          title: aduan.title,
+          kategori: aduan.kategori,
+          masalah: aduan.masalah    
+        };
+    
+        let url = this.baseURL + '/createAduan';
+        let body = JSON.stringify(data);
+    
+        return new Promise( (resolve, reject) => {
+          this.http.post(url, body)
+          .subscribe(response => {
+            resolve(response);
+          }, err => {
+            reject(err);
+          })
+        })
+      }
     })
   }
 

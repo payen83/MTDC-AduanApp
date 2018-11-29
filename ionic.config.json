@@ -1,5 +1,7 @@
 {
   "name": "AduanApp",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }
