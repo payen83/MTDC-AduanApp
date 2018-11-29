@@ -14,59 +14,58 @@ export class HelpdeskProvider {
     this.baseURL = 'http://localhost/helpdesk/api';
   }
 
-  getAduanAll(){
+  getAduanAll() {
     let url: string = this.baseURL + '/getAduanAll';
 
-    return new Promise( (resolve, reject) => {
+    return new Promise((resolve, reject) => {
       this.http.get(url)
-      .subscribe(response => {
-        resolve(response);
-      }, err => {
-        reject(err);
+        .subscribe(response => {
+          resolve(response);
+        }, err => {
+          reject(err);
+        })
+    })
+  }
+
+  createAduan(aduan: any) {
+    return new Promise((resolve, reject) => {
+      this.storage.get('USERDATA').then(result => {
+        if (result) {
+          let user = JSON.parse(result);
+
+          let data = {
+            user_id: user.user_id,
+            token: user.token,
+            title: aduan.title,
+            kategori: aduan.kategori,
+            masalah: aduan.masalah
+          };
+
+          let url = this.baseURL + '/createAduan';
+          let body = JSON.stringify(data);
+
+          this.http.post(url, body)
+            .subscribe(response => {
+              resolve(response);
+            }, err => {
+              reject(err);
+            })
+        }
       })
     })
   }
 
-  createAduan(aduan: any){
-
-    this.storage.get('USERDATA').then(result => {
-      if(result) {
-        let user = JSON.parse(result);
-
-        let data = {
-          user_id: user.user_id,
-          token: user.token,
-          title: aduan.title,
-          kategori: aduan.kategori,
-          masalah: aduan.masalah    
-        };
-    
-        let url = this.baseURL + '/createAduan';
-        let body = JSON.stringify(data);
-    
-        return new Promise( (resolve, reject) => {
-          this.http.post(url, body)
-          .subscribe(response => {
-            resolve(response);
-          }, err => {
-            reject(err);
-          })
-        })
-      }
-    })
-  }
-
-  doLogin(user: any){
+  doLogin(user: any) {
     let url = this.baseURL + '/login';
     let body = JSON.stringify(user);
 
-    return new Promise( (resolve, reject) => {
+    return new Promise((resolve, reject) => {
       this.http.post(url, body)
-      .subscribe(response => {
-        resolve(response);
-      }, err => {
-        reject(err);
-      })
+        .subscribe(response => {
+          resolve(response);
+        }, err => {
+          reject(err);
+        })
     })
   }
 
