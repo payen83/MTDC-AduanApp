@@ -25,7 +25,30 @@ export class HelpdeskProvider {
         reject(err);
       })
     })
-    
+  }
+
+  createAduan(aduan: any){
+    let data = {
+      user_id: 1,
+      token: 'd5f66a06ec809d70d0c52842df8dc0011d7d1ad0f2d56f50d3123da17a2489fe',
+      title: aduan.title,
+      kategori: aduan.kategori,
+      masalah: aduan.masalah    
+    };
+
+    let url = this.baseURL + '/createAduan';
+    let body = JSON.stringify(data);
+
+    return new Promise( (resolve, reject) => {
+      this.http.post(url, body)
+      .subscribe(response => {
+        resolve(response);
+      }, err => {
+        reject(err);
+      })
+    })
+
+
   }
 
 }

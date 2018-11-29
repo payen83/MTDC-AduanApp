@@ -13,6 +13,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HelpdeskProvider } from '../providers/helpdesk/helpdesk';
 import { HttpClientModule } from '@angular/common/http';
 import { DetailsPageModule } from '../pages/details/details.module';
+import { CreatePageModule } from '../pages/create/create.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { DetailsPageModule } from '../pages/details/details.module';
     BrowserModule,
     HttpClientModule,
     DetailsPageModule,
+    CreatePageModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],

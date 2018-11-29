@@ -17,7 +17,7 @@ export class DetailsPage {
   aduan: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.aduan = { title: '', masalah: '', id: '', status: ''};
+    this.aduan = { title: '', masalah: '', aduan_id: '', status: ''};
   }
 
   ionViewDidLoad() {
