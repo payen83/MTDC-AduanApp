@@ -1,0 +1,28 @@
+page-login {
+
+    .bg {
+        background-image: url('../../assets/imgs/bg.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        z-index: 1;
+        background-repeat: repeat-x;
+    }
+
+    h2{
+        color: color($colors, light);
+    }
+
+    .item-md, .item-ios {
+        background-color: transparent;
+        color: #fff;
+    }
+
+    .label-md, .label-ios {
+        color: #fff !important;
+    }
+
+
+    .logo {
+       margin-top: 5em!important;
+    }
+}

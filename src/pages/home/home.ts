@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController } from 'ionic-angular';
+import { NavController, ModalController, App } from 'ionic-angular';
 import { HelpdeskProvider } from '../../providers/helpdesk/helpdesk';
 import { DetailsPage } from '../details/details';
 import { CreatePage } from '../create/create';
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-home',
@@ -13,7 +14,8 @@ export class HomePage {
   constructor(
     public navCtrl: NavController, 
     public helpdesk: HelpdeskProvider,
-    public modalCtrl: ModalController) {
+    public modalCtrl: ModalController,
+    public app: App) {
     this.aduanList = [];
   }
 
@@ -29,6 +31,11 @@ export class HomePage {
     }).catch(error => {
       console.log('error', error);
     })
+  }
+
+  logout(){
+    //this.navCtrl.setRoot(LoginPage);
+    this.app.getRootNav().setRoot(LoginPage);
   }
 
   setTime(time){
@@ -63,7 +70,5 @@ export class HomePage {
     })
     modal.present();
   }
-
-
 
 }

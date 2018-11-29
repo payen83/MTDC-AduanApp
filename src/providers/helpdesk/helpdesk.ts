@@ -47,8 +47,20 @@ export class HelpdeskProvider {
         reject(err);
       })
     })
+  }
 
+  doLogin(user: any){
+    let url = this.baseURL + '/login';
+    let body = JSON.stringify(user);
 
+    return new Promise( (resolve, reject) => {
+      this.http.post(url, body)
+      .subscribe(response => {
+        resolve(response);
+      }, err => {
+        reject(err);
+      })
+    })
   }
 
 }

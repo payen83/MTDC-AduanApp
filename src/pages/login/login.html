@@ -1,0 +1,26 @@
+<!-- <ion-header>
+
+  <ion-navbar>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+
+</ion-header> -->
+
+
+<ion-content class="bg" padding>
+  <div class="logo" align="center">
+    <img src="assets/imgs/logo.png" width="150"/>
+  </div>
+  <h2>Please login to continue</h2>
+  <ion-list>
+    <ion-item>
+      <ion-label fixed>Username</ion-label>
+      <ion-input type="text" [(ngModel)]="user.username"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Password</ion-label>
+      <ion-input type="password" [(ngModel)]="user.password"></ion-input>
+    </ion-item>
+  </ion-list>
+  <button ion-button block (click)="login()">Login</button>
+</ion-content>
