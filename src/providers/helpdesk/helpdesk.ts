@@ -11,7 +11,7 @@ import { Storage } from '@ionic/storage';
 export class HelpdeskProvider {
   baseURL: string;
   constructor(public http: HttpClient, public storage: Storage) {
-    this.baseURL = 'http://localhost/helpdesk/api';
+    this.baseURL = 'http://helpdesk.appsmalaya.com/api';
   }
 
   getAduanAll() {

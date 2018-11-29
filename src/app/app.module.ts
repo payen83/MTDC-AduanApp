@@ -16,6 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { DetailsPageModule } from '../pages/details/details.module';
 import { CreatePageModule } from '../pages/create/create.module';
 import { LoginPageModule } from '../pages/login/login.module';
+import { ScanPageModule } from '../pages/scan/scan.module';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { LoginPageModule } from '../pages/login/login.module';
     CreatePageModule,
     LoginPageModule,
     IonicStorageModule.forRoot(),
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    ScanPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -46,7 +49,8 @@ import { LoginPageModule } from '../pages/login/login.module';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    HelpdeskProvider
+    HelpdeskProvider,
+    BarcodeScanner
   ]
 })
 export class AppModule {}
